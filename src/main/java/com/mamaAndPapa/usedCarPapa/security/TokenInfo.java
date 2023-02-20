@@ -23,7 +23,7 @@ public class TokenInfo {
         String nick_name = (String) claims.get("nickName");
         String email = (String) claims.get("email");
 
-
         return new TokenInfo(id,name,phone_number,local,nick_name,email);
     }
 }
+
