@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/usedcar?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/usedCar_JPA?serverTimezone=UTC
     username: test
     password: 1234
 
