@@ -4,10 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor
@@ -16,4 +15,10 @@ public class Manufacturer {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
+    private List<Model> models = new ArrayList<>();
+
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
+    private List<SellingCar> sellingCars = new ArrayList<>();
 }

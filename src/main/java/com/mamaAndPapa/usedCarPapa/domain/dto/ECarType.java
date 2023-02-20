@@ -1,11 +1,11 @@
 package com.mamaAndPapa.usedCarPapa.domain.dto;
 
 public enum ECarType {
-    Light,
-    SemiMidsize,
-    Midsize,
-    Large,
-    Sports,
+    LIGHT,
+    SEMI_MIDSIZE,
+    MIDSIZE,
+    LARGE,
+    SPORTS,
     SUV
 
 
