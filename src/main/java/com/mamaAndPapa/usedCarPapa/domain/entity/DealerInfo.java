@@ -21,5 +21,4 @@ public class DealerInfo extends BaseEntity {
     @JoinColumn(name = "user_id")
     private Users dealers;
 
-
 }
