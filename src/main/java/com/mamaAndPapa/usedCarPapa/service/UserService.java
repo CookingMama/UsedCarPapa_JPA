@@ -3,7 +3,9 @@ package com.mamaAndPapa.usedCarPapa.service;
 import com.mamaAndPapa.usedCarPapa.domain.dto.EUserType;
 import com.mamaAndPapa.usedCarPapa.domain.entity.Users;
 import com.mamaAndPapa.usedCarPapa.domain.request.UserLoginRequest;
+import com.mamaAndPapa.usedCarPapa.domain.request.UserSignupRequest;
 import com.mamaAndPapa.usedCarPapa.domain.response.UserResponse;
+import com.mamaAndPapa.usedCarPapa.exception.IdCheckException;
 import com.mamaAndPapa.usedCarPapa.repository.UsersRepository;
 import com.mamaAndPapa.usedCarPapa.security.UserSecurityService;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +42,17 @@ public class UserService {
 
         );
         return userResponse;
+    }
+    public UserResponse signupService (UserSignupRequest request) throws IdCheckException, LoginException {
+        Users user = request.toEntity();
+        Optional<Users> findUserId = usersRepository.findByUserId(request.getUserId());
+        if (findUserId.isPresent()) {
+            throw new IdCheckException();
+        }
+        usersRepository.save(user);
+        UserLoginRequest loginRequest =
+                new UserLoginRequest(user.getUserId(), user.getUserPw());
+        return loginService(loginRequest);
     }
 
 }

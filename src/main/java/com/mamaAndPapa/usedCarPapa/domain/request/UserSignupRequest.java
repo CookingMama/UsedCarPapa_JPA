@@ -18,7 +18,7 @@ public class UserSignupRequest {
     private String userPw;
     @NotEmpty(message = "입력해주세요")
     private String name;
-    @NotEmpty(message = "입력해주세요")
+
     private EUserType userType;
     @NotEmpty(message = "입력해주세요")
     private String phoneNumber;

@@ -2,7 +2,9 @@ package com.mamaAndPapa.usedCarPapa.controller;
 
 
 import com.mamaAndPapa.usedCarPapa.domain.request.UserLoginRequest;
+import com.mamaAndPapa.usedCarPapa.domain.request.UserSignupRequest;
 import com.mamaAndPapa.usedCarPapa.domain.response.UserResponse;
+import com.mamaAndPapa.usedCarPapa.exception.IdCheckException;
 import com.mamaAndPapa.usedCarPapa.repository.UsersRepository;
 import com.mamaAndPapa.usedCarPapa.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +24,14 @@ public class UserController {
     private final UsersRepository usersRepository;
 
     @PostMapping("/login")
-    public UserResponse login (@RequestBody @Valid UserLoginRequest request) throws LoginException {
+    public UserResponse login(@RequestBody @Valid UserLoginRequest request) throws LoginException {
         return userService.loginService(request);
+    }
+
+    @PostMapping("/signup")
+    public UserResponse signUp(@RequestBody @Valid UserSignupRequest request) throws LoginException, IdCheckException {
+
+        return userService.signupService(request);
+
     }
 }
