@@ -24,4 +24,8 @@ public class DetailModel {
 
     @OneToMany(mappedBy = "detailModel", fetch = FetchType.LAZY)
     private List<SellingCar> sellingCars = new ArrayList<>();
+
+    public DetailModel(Long id) {
+        this.id = id;
+    }
 }

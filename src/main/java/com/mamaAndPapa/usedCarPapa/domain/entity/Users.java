@@ -46,4 +46,7 @@ public class Users extends BaseEntity {
     @OneToOne(mappedBy = "dealers", fetch = FetchType.LAZY)
     private DealerInfo dealerInfo;
 
+    public Users(Long id) {
+        this.id = id;
+    }
 }

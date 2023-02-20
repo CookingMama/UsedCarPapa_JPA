@@ -21,4 +21,8 @@ public class Manufacturer {
 
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
     private List<SellingCar> sellingCars = new ArrayList<>();
+
+    public Manufacturer(Long id) {
+        this.id = id;
+    }
 }
