@@ -29,10 +29,11 @@ public class Users extends BaseEntity {
     private String nickName;
     private String email;
 
-    public Users(String userId, String userPw, String name, String phoneNumber, String locale, String nickName, String email) {
+    public Users(String userId, String userPw, String name,EUserType userType, String phoneNumber, String locale, String nickName, String email) {
         this.userId = userId;
         this.userPw = userPw;
         this.name = name;
+        this.userType = userType;
         this.phoneNumber = phoneNumber;
         this.locale = locale;
         this.nickName = nickName;

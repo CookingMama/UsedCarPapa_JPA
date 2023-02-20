@@ -1,5 +1,6 @@
 package com.mamaAndPapa.usedCarPapa.domain.request;
 
+import com.mamaAndPapa.usedCarPapa.domain.dto.EUserType;
 import com.mamaAndPapa.usedCarPapa.domain.entity.Users;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +19,8 @@ public class UserSignupRequest {
     @NotEmpty(message = "입력해주세요")
     private String name;
     @NotEmpty(message = "입력해주세요")
+    private EUserType userType;
+    @NotEmpty(message = "입력해주세요")
     private String phoneNumber;
     @NotEmpty(message = "입력해주세요")
     private String locale;
@@ -31,6 +34,7 @@ public class UserSignupRequest {
                 this.userId,
                 this.userPw,
                 this.name,
+                this.userType,
                 this.phoneNumber,
                 this.locale,
                 this.nickName,
