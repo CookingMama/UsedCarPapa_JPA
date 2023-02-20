@@ -8,4 +8,7 @@ import java.util.Optional;
 
 public interface UsersRepository extends JpaRepository<Users,Long> {
     Optional<Users> findByUserIdAndUserPw(String userId, String userPw);
+
+
+    Optional<Users> findByUserId(String UserId);
 }
