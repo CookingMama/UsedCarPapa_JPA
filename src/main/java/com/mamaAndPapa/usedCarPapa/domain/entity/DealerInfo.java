@@ -10,21 +10,16 @@ import javax.persistence.*;
 @Getter
 @Entity
 @AllArgsConstructor @NoArgsConstructor
-public class Dealer extends BaseEntity {
+public class DealerInfo extends BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false)
-    private String dealerId;
-    @Column(nullable = false)
-    private String dealerPw;
-    private String name;
-    private String phoneNumber;
-    private String locale; //지역
-    private String nickName;
-    private String email;
     private String companyName;
     private String position;
     private Integer matchCount;
+
+    @OneToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Users dealers;
 
 
 }

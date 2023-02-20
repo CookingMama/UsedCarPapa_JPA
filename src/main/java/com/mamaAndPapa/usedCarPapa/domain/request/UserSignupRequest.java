@@ -1,6 +1,6 @@
 package com.mamaAndPapa.usedCarPapa.domain.request;
 
-import com.mamaAndPapa.usedCarPapa.domain.entity.User;
+import com.mamaAndPapa.usedCarPapa.domain.entity.Users;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,8 +26,8 @@ public class UserSignupRequest {
     @NotEmpty(message = "입력해주세요")
     private String email;
 
-    public User toEntity() {
-        return new User(
+    public Users toEntity() {
+        return new Users(
                 this.userId,
                 this.userPw,
                 this.name,

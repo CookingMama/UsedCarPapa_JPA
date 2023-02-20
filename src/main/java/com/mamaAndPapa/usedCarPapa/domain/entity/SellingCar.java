@@ -36,4 +36,8 @@ public class SellingCar extends BaseEntity {
     private Long buyerId;
     @Enumerated(EnumType.STRING)
     private ECheck buyCheck;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Users seller;
+
 }
