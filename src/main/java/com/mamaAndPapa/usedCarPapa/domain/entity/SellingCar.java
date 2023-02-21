@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor
-@Getter
+@Getter @Setter
 public class SellingCar extends BaseEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
