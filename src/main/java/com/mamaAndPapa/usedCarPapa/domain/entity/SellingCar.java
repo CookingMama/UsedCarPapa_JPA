@@ -76,6 +76,6 @@ public class SellingCar extends BaseEntity{
         this.buyerId = buyerId;
         this.buyCheck = buyCheck;
     }
-    @OneToMany(mappedBy = "sellingCarId",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "sellingCar",fetch = FetchType.LAZY)
     private List<Review> reviews = new ArrayList<>();
 }
