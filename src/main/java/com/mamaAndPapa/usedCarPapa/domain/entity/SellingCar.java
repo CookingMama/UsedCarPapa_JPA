@@ -59,5 +59,13 @@ public class SellingCar{
         this.price = request.getPrice();
     }
 
+    public interface SellingCarMapping {
+       DetailModel getDetailModel();
+       Integer getMileage();
+       String getLocation();
+       Integer getBuyYear();
+       Integer getPrice();
+    }
+
 
 }
