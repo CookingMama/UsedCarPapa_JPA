@@ -6,6 +6,7 @@ import com.mamaAndPapa.usedCarPapa.domain.response.FindAllSellingCarResponse;
 import com.mamaAndPapa.usedCarPapa.domain.response.FindOneSellingCarResponse;
 import com.mamaAndPapa.usedCarPapa.domain.response.InsertSellingCarResponse;
 import com.mamaAndPapa.usedCarPapa.repository.SellingCarRepository;
+import com.mamaAndPapa.usedCarPapa.security.UserSecurityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SellingCarService {
     private final SellingCarRepository sellingCarRepository;
+    private final UserSecurityService userSecurityService;
 
     public InsertSellingCarResponse insertSellingCar(InsertSellingCarRequest request){
         SellingCar sellingCar = new SellingCar(request);
@@ -29,7 +31,9 @@ public class SellingCarService {
         List<FindAllSellingCarResponse> findAllSellingCarResponses = new ArrayList<>();
         List<SellingCar> all = sellingCarRepository.findAll();
         for (SellingCar one : all) {
-            findAllSellingCarResponses.add(new FindAllSellingCarResponse(one));
+            findAllSellingCarResponses.add(new FindAllSellingCarResponse
+                    (one.getDetailModel().getName(), one.getPrice(),
+                            userSecurityService.parseToken(userSecurityService.getToken()).getUserType()));
         }
         return findAllSellingCarResponses;
     }

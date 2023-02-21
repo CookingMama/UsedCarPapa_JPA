@@ -32,6 +32,7 @@ public class UserSecurityService {
         Map<String, Object> map = new HashMap<>();
         map.put("id", users.getId());
         map.put("name", users.getName());
+        map.put("userType", users.getUserType());
         map.put("phoneNumber", users.getPhoneNumber());
         map.put("local", users.getLocale());
         map.put("nickName", users.getNickName());
