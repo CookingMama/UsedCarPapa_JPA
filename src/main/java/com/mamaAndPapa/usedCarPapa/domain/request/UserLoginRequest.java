@@ -11,9 +11,9 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 public class UserLoginRequest {
     @NotEmpty(message = "입력해주세요")
-    private String memberId;
+    private String userId;
 
     @NotEmpty(message = "입력해주세요")
-    private String memberPw;
+    private String userPw;
 
 }

@@ -23,8 +23,8 @@ public class UserService {
     public UserResponse loginService(UserLoginRequest request) throws LoginException {
         Optional<Users> findByUserIdAndUserPw =
                 usersRepository.findByUserIdAndUserPw(
-                        request.getMemberId(),
-                        request.getMemberPw()
+                        request.getUserId(),
+                        request.getUserPw()
                 );
         Users user =
                 findByUserIdAndUserPw
