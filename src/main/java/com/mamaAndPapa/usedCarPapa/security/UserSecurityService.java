@@ -1,5 +1,6 @@
 package com.mamaAndPapa.usedCarPapa.security;
 
+import com.mamaAndPapa.usedCarPapa.domain.entity.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -17,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class SecurityService {
+public class UserSecurityService {
     @Value("${jwt.SECRET_KEY}")
     private String SECRET_KEY;
 
@@ -32,7 +33,7 @@ public class SecurityService {
         map.put("id", users.getId());
         map.put("name", users.getName());
         map.put("phoneNumber", users.getPhoneNumber());
-        map.put("local", users.getLocal());
+        map.put("local", users.getLocale());
         map.put("nickName", users.getNickName());
         map.put("email", users.getEmail());
         return Jwts.builder().setClaims(map)

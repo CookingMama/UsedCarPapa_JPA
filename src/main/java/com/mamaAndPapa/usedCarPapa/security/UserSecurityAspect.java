@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 
 @Aspect
 @Component
-public class SecurityAspect {
+public class UserSecurityAspect {
     @Autowired
-    SecurityService securityService;
+    UserSecurityService securityService;
     @Before("@annotation(tokenRequired)")
     public void authenticationWithToken(TokenRequired tokenRequired) {
 
