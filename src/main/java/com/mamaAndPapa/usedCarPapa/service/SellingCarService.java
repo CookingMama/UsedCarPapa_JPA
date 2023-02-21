@@ -1,5 +1,6 @@
 package com.mamaAndPapa.usedCarPapa.service;
 
+import com.mamaAndPapa.usedCarPapa.domain.dto.ECheck;
 import com.mamaAndPapa.usedCarPapa.domain.entity.SellingCar;
 import com.mamaAndPapa.usedCarPapa.domain.request.InsertSellingCarRequest;
 import com.mamaAndPapa.usedCarPapa.domain.response.FindAllSellingCarResponse;
@@ -42,6 +43,17 @@ public class SellingCarService {
         FindOneSellingCarResponse findOneSellingCarResponse = new FindOneSellingCarResponse(byId.get());
         findOneSellingCarResponse.setSeller(userSecurityService.parseToken(userSecurityService.getToken()).getName());
         return findOneSellingCarResponse;
+    }
+    public String successDeal(Long id){
+        Optional<SellingCar> sellingCar = sellingCarRepository.findById(id);
+        if (sellingCar.isEmpty()){
+            return "선택하신 상품은 없는 존재하지 않는 상품입니다.";
+        } else {
+            sellingCar.get().setBuyerId(Long.valueOf(userSecurityService.parseToken(userSecurityService.getToken()).getId()));
+            sellingCar.get().setBuyCheck(ECheck.CHECK);
+        }
+        sellingCarRepository.save(sellingCar.get());
+        return "거래완료";
     }
 
 }

@@ -7,12 +7,13 @@ import com.mamaAndPapa.usedCarPapa.domain.request.InsertSellingCarRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor
-@Getter
+@Getter @Setter
 public class SellingCar{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -66,6 +67,9 @@ public class SellingCar{
         this.price = request.getPrice();
     }
 
-
-
+    public SellingCar(Long id, Long buyerId, ECheck buyCheck) {
+        this.id = id;
+        this.buyerId = buyerId;
+        this.buyCheck = buyCheck;
+    }
 }
