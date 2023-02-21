@@ -6,6 +6,7 @@ import com.mamaAndPapa.usedCarPapa.domain.response.FindOneSellingCarResponse;
 import com.mamaAndPapa.usedCarPapa.domain.response.InsertSellingCarResponse;
 import com.mamaAndPapa.usedCarPapa.service.SellingCarService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +22,12 @@ public class SellingCarController {
     }
 
     @GetMapping
-    public List<FindAllSellingCarResponse> findAllSellingCar(){
-        return sellingCarService.findAllSellingCar();
+    public List<FindAllSellingCarResponse> findAllSellingCar(
+            Pageable pageable
+//            @RequestParam(value = "size", required = false,defaultValue = "5") Integer size,
+//            @RequestParam("page") Integer page
+    ){
+        return sellingCarService.findAllSellingCar(pageable);
     }
     @GetMapping("/{id}")
     public FindOneSellingCarResponse findById(@PathVariable Long id){

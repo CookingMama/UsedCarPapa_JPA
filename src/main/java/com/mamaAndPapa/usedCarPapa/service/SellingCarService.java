@@ -9,9 +9,13 @@ import com.mamaAndPapa.usedCarPapa.domain.response.InsertSellingCarResponse;
 import com.mamaAndPapa.usedCarPapa.repository.SellingCarRepository;
 import com.mamaAndPapa.usedCarPapa.security.UserSecurityService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,18 +26,19 @@ public class SellingCarService {
     private final SellingCarRepository sellingCarRepository;
     private final UserSecurityService userSecurityService;
 
+
     public InsertSellingCarResponse insertSellingCar(InsertSellingCarRequest request){
         SellingCar sellingCar = new SellingCar(request);
         sellingCarRepository.save(sellingCar);
         InsertSellingCarResponse insertSellingCarResponse = new InsertSellingCarResponse(sellingCar);
         return insertSellingCarResponse;
     }
-    public List<FindAllSellingCarResponse> findAllSellingCar(){
+    public List<FindAllSellingCarResponse> findAllSellingCar(Pageable pageable){
         List<FindAllSellingCarResponse> findAllSellingCarResponses = new ArrayList<>();
-        List<SellingCar> all = sellingCarRepository.findAll();
+        Page<SellingCar> all = sellingCarRepository.findAllByOrderByCreateAt(pageable);
         for (SellingCar one : all) {
             findAllSellingCarResponses.add(new FindAllSellingCarResponse
-                    (one.getDetailModel().getName(), one.getPrice(),
+                    (one.getId(),one.getDetailModel().getName(), one.getPrice(),
                             userSecurityService.parseToken(userSecurityService.getToken()).getUserType()));
         }
         return findAllSellingCarResponses;
