@@ -39,7 +39,9 @@ public class SellingCarService {
     }
     public FindOneSellingCarResponse findById(Long id){
         Optional<SellingCar> byId = sellingCarRepository.findById(id);
-        return new FindOneSellingCarResponse(byId.get());
+        FindOneSellingCarResponse findOneSellingCarResponse = new FindOneSellingCarResponse(byId.get());
+        findOneSellingCarResponse.setSeller(userSecurityService.parseToken(userSecurityService.getToken()).getName());
+        return findOneSellingCarResponse;
     }
 
 }
