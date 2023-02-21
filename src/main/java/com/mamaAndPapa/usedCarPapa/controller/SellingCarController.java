@@ -1,11 +1,14 @@
 package com.mamaAndPapa.usedCarPapa.controller;
 
 import com.mamaAndPapa.usedCarPapa.domain.request.InsertSellingCarRequest;
+import com.mamaAndPapa.usedCarPapa.domain.response.FindAllSellingCarResponse;
+import com.mamaAndPapa.usedCarPapa.domain.response.FindOneSellingCarResponse;
 import com.mamaAndPapa.usedCarPapa.domain.response.InsertSellingCarResponse;
-import com.mamaAndPapa.usedCarPapa.domain.response.SellingCarListResponse;
 import com.mamaAndPapa.usedCarPapa.service.SellingCarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/sellingcar")
@@ -17,19 +20,14 @@ public class SellingCarController {
         return sellingCarService.insertSellingCar(request);
     }
 
+    @GetMapping
+    public List<FindAllSellingCarResponse> findAllSellingCar(){
+        return sellingCarService.findAllSellingCar();
+    }
     @GetMapping("/{id}")
-    public InsertSellingCarResponse findById(@PathVariable Long id){
+    public FindOneSellingCarResponse findById(@PathVariable Long id){
         return sellingCarService.findById(id);
     }
 
-    @GetMapping("/list")
-    public SellingCarListResponse getAllSellingCars (
-            @RequestParam(value = "size", required = false, defaultValue = "5") Integer size,
-            @RequestParam("page") Integer page
-    ) {
-        if (page > 0) {
-            page = page -1;
-        }
-        return sellingCarService.viewAllCars(page,size);
-    }
+
 }

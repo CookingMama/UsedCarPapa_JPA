@@ -2,12 +2,15 @@ package com.mamaAndPapa.usedCarPapa.service;
 
 import com.mamaAndPapa.usedCarPapa.domain.entity.SellingCar;
 import com.mamaAndPapa.usedCarPapa.domain.request.InsertSellingCarRequest;
+import com.mamaAndPapa.usedCarPapa.domain.response.FindAllSellingCarResponse;
+import com.mamaAndPapa.usedCarPapa.domain.response.FindOneSellingCarResponse;
 import com.mamaAndPapa.usedCarPapa.domain.response.InsertSellingCarResponse;
-import com.mamaAndPapa.usedCarPapa.domain.response.SellingCarListResponse;
 import com.mamaAndPapa.usedCarPapa.repository.SellingCarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,14 +25,17 @@ public class SellingCarService {
         InsertSellingCarResponse insertSellingCarResponse = new InsertSellingCarResponse(sellingCar);
         return insertSellingCarResponse;
     }
-
-    public InsertSellingCarResponse findById(Long id){
+    public List<FindAllSellingCarResponse> findAllSellingCar(){
+        List<FindAllSellingCarResponse> findAllSellingCarResponses = new ArrayList<>();
+        List<SellingCar> all = sellingCarRepository.findAll();
+        for (SellingCar one : all) {
+            findAllSellingCarResponses.add(new FindAllSellingCarResponse(one));
+        }
+        return findAllSellingCarResponses;
+    }
+    public FindOneSellingCarResponse findById(Long id){
         Optional<SellingCar> byId = sellingCarRepository.findById(id);
-        return new InsertSellingCarResponse(byId.get());
+        return new FindOneSellingCarResponse(byId.get());
     }
 
-    public SellingCarListResponse viewAllCars(Integer page, Integer size) {
-        List<SellingCar.SellingCarMapping> sellingCars = sellingCarRepository.findAllBy();
-        return new SellingCarListResponse(sellingCars,page,size);
-    }
 }
