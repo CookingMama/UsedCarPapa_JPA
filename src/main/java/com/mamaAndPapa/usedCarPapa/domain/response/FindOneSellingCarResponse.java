@@ -8,10 +8,8 @@ import com.mamaAndPapa.usedCarPapa.domain.entity.SellingCar;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter @AllArgsConstructor @NoArgsConstructor
-@Setter
 public class FindOneSellingCarResponse {
     private String seller;
     private String manufacturerName;
