@@ -1,10 +1,8 @@
 package com.mamaAndPapa.usedCarPapa.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mamaAndPapa.usedCarPapa.config.BaseEntity;
-import com.mamaAndPapa.usedCarPapa.domain.dto.ECarType;
-import com.mamaAndPapa.usedCarPapa.domain.dto.ECheck;
-import com.mamaAndPapa.usedCarPapa.domain.dto.EDriveType;
-import com.mamaAndPapa.usedCarPapa.domain.dto.EFuel;
+import com.mamaAndPapa.usedCarPapa.domain.dto.*;
 import com.mamaAndPapa.usedCarPapa.domain.request.InsertSellingCarRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,15 +17,19 @@ public class SellingCar{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "seller_id")
     private Users seller;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "model_id")
     private Model model;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "detail_model_id")
     private DetailModel detailModel;
     private String color;
@@ -44,6 +46,11 @@ public class SellingCar{
     @Enumerated(EnumType.STRING)
     private ECheck buyCheck;
 
+    public SellingCar(DetailModel detailModel, Integer price) {
+        this.detailModel = detailModel;
+        this.price = price;
+
+    }
     public SellingCar(InsertSellingCarRequest request) {
         this.seller = new Users(request.getSellerId());
         this.manufacturer = new Manufacturer(request.getManufacturerId());

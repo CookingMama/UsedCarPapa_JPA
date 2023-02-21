@@ -20,7 +20,7 @@ public class TokenInfo {
     public TokenInfo parseToken(Claims claims) {
         Integer id = (Integer) claims.get("id");
         String name = (String) claims.get("name");
-        EUserType userType = (EUserType) claims.get("userType");
+        EUserType userType = EUserType.valueOf((String) claims.get("userType"));
         String phone_number = (String) claims.get("phoneNumber");
         String local = (String) claims.get("local");
         String nick_name = (String) claims.get("nickName");
