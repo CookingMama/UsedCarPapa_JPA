@@ -23,9 +23,9 @@ public class SellingCarController {
 
     @GetMapping
     public List<FindAllSellingCarResponse> findAllSellingCar(
-            Pageable pageable
-//            @RequestParam(value = "size", required = false,defaultValue = "5") Integer size,
-//            @RequestParam("page") Integer page
+            Pageable pageable,
+            @RequestParam(value = "size", required = false,defaultValue = "5") Integer size,
+            @RequestParam("page") Integer page
     ){
         return sellingCarService.findAllSellingCar(pageable);
     }

@@ -9,12 +9,10 @@ import com.mamaAndPapa.usedCarPapa.repository.SellingCarRepository;
 import com.mamaAndPapa.usedCarPapa.security.UserSecurityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +32,7 @@ public class SellingCarService {
     }
     public List<FindAllSellingCarResponse> findAllSellingCar(Pageable pageable){
         List<FindAllSellingCarResponse> findAllSellingCarResponses = new ArrayList<>();
-        Page<SellingCar> all = sellingCarRepository.findAllByOrderByCreateAt(pageable);
+        Page<SellingCar> all = sellingCarRepository.findAllByOrderByCreateAtDesc(pageable);
         for (SellingCar one : all) {
             findAllSellingCarResponses.add(new FindAllSellingCarResponse
                     (one.getId(),one.getDetailModel().getName(), one.getPrice(),

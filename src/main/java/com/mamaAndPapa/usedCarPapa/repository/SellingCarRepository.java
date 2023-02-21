@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SellingCarRepository extends JpaRepository<SellingCar, Long> {
-     Page<SellingCar> findAllByOrderByCreateAt(Pageable pageable);
+     Page<SellingCar> findAllByOrderByCreateAtDesc(Pageable pageable);
 }
