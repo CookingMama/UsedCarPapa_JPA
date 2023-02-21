@@ -34,5 +34,8 @@ public class SellingCarController {
         return sellingCarService.findById(id);
     }
 
-
+    @PutMapping("/{id}")
+    public String successDeal(@PathVariable Long id){
+        return sellingCarService.successDeal(id);
+    }
 }

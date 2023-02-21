@@ -7,6 +7,7 @@ import com.mamaAndPapa.usedCarPapa.domain.request.InsertSellingCarRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor @NoArgsConstructor
 @Getter
 public class SellingCar extends BaseEntity{
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -67,6 +69,9 @@ public class SellingCar extends BaseEntity{
         this.price = request.getPrice();
     }
 
-
-
+    public SellingCar(Long id, Long buyerId, ECheck buyCheck) {
+        this.id = id;
+        this.buyerId = buyerId;
+        this.buyCheck = buyCheck;
+    }
 }
