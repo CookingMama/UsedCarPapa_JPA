@@ -1,5 +1,6 @@
 package com.mamaAndPapa.usedCarPapa.domain.request;
 
+import com.mamaAndPapa.usedCarPapa.domain.dto.EReviewType;
 import lombok.*;
 
 @Getter
@@ -13,4 +14,5 @@ public class ReviewRequest {
     private Integer rating;
     private Long writerId;
     private Long receiverId;
+    private EReviewType reviewType;
 }

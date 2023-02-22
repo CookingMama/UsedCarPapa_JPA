@@ -7,7 +7,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DetailModelDTO {
+public class UserNameDTO {
+
+    private Long id;
     private String name;
+
 
 }
