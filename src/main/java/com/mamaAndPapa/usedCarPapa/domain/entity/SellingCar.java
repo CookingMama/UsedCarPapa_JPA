@@ -11,6 +11,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor @NoArgsConstructor
@@ -74,4 +76,6 @@ public class SellingCar extends BaseEntity{
         this.buyerId = buyerId;
         this.buyCheck = buyCheck;
     }
+    @OneToMany(mappedBy = "sellingCar",fetch = FetchType.LAZY)
+    private List<Review> reviews = new ArrayList<>();
 }

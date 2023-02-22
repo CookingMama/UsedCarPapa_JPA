@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TokenInfo {
-    private Integer id;
+    private Long id;
     private String name;
     private EUserType userType;
     private String phoneNumber;
@@ -18,7 +18,7 @@ public class TokenInfo {
     private String nickName;
     private String email;
     public TokenInfo parseToken(Claims claims) {
-        Integer id = (Integer) claims.get("id");
+        Long id = Long.parseLong(String.valueOf(claims.get("id")));
         String name = (String) claims.get("name");
         EUserType userType = EUserType.valueOf((String) claims.get("userType"));
         String phone_number = (String) claims.get("phoneNumber");
