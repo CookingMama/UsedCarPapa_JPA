@@ -1,6 +1,8 @@
 package com.mamaAndPapa.usedCarPapa.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mamaAndPapa.usedCarPapa.config.BaseEntity;
+import com.mamaAndPapa.usedCarPapa.domain.dto.EReviewType;
 import com.mamaAndPapa.usedCarPapa.domain.request.ReviewRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Review {
+public class Review extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,6 +28,8 @@ public class Review {
 
     private Long writerId;
     private Long receiverId;
+    @Enumerated(EnumType.STRING)
+    private EReviewType reviewType;
 
     public Review(ReviewRequest request, SellingCar sellingCar) {
         this.sellingCar = sellingCar;
@@ -33,6 +37,7 @@ public class Review {
         this.rating = request.getRating();
         this.writerId = request.getWriterId();
         this.receiverId = request.getReceiverId();
+        this.reviewType = request.getReviewType();
 
     }
 }
